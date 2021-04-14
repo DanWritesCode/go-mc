@@ -3,6 +3,7 @@ package bot
 import (
 	"github.com/Tnze/go-mc/net"
 	"github.com/google/uuid"
+	"net/http"
 )
 
 // Client is used to access Minecraft server
@@ -14,6 +15,7 @@ type Client struct {
 	UUID uuid.UUID
 
 	Events Events
+	HttpClient	*http.Client
 	//TODO: LoginEvents Events
 }
 
@@ -32,6 +34,7 @@ func NewClient() *Client {
 	return &Client{
 		Auth:   Auth{Name: "Steve"},
 		Events: Events{handlers: make(map[int32]*handlerHeap)},
+		HttpClient: &http.Client{},
 	}
 }
 

@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"math"
 	"reflect"
 )
@@ -381,7 +382,7 @@ func (d *Decoder) rawRead(tagType byte) error {
 			return err
 		}
 
-		if _, err = io.CopyN(io.Discard, d.r, int64(aryLen)); err != nil {
+		if _, err = io.CopyN(ioutil.Discard, d.r, int64(aryLen)); err != nil {
 			return err
 		}
 	case TagIntArray:
